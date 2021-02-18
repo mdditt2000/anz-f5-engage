@@ -10,4 +10,4 @@ The benefits are getting the best of both worlds, with the BIG-IP providing comp
 
 This architecture is depicted below
 
-![architecture](https://github.com/mdditt2000/kubernetes-1-18/blob/master/cis%202.0/crd/diagrams/2020-04-23_13-33-54.png)
+![architecture](https://github.com/mdditt2000/anz-f5-engage/raw/main/diagram/2021-02-18_14-28-09.png)
