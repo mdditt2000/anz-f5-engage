@@ -1,6 +1,6 @@
 # ANZ-F5-Engage
  
-This repo is created for the ANZ F5 Engage event and documents the better together solution - **Delivering Container Ingress with F5 Container Ingress Services and NGINX Kubernetes Ingress Controller**
+This repo is created for the ANZ F5 Engage event and documents the better together solution - **Delivering Container Ingress with F5 Container Ingress Services and NGINX Kubernetes Ingress Controller** This document is also an addition to Better together - F5 Container Ingress Services and NGINX [devcentral](https://github.com/F5Networks/k8s-bigip-ctlr/releases/tag/v2.2.3)
 
 ## Introduction
 
