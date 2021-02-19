@@ -11,3 +11,15 @@ The benefits are getting the best of both worlds, with the BIG-IP providing comp
 This architecture is depicted below
 
 ![architecture](https://github.com/mdditt2000/anz-f5-engage/raw/main/diagram/2021-02-18_14-28-09.png)
+
+The integration is made fluid via the CIS, a k8s pod that listens to events in the cluster and dynamically populates the BIG-IP pool pointing to the NGINX IC's as they scale. CIS also dynamically populates external DSN with the Wide-IP for allowing for scaling of K8S Cluster or Data Centers.
+
+There are a few components need to be configured to support this integration, each of which is discussed in detail.
+
+## NGINX Plus Ingress Controller
+
+Follow this (https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) to build the NIC image.
+
+The NIC can be deployed using the Manifests either as a Daemon-Set or a Service. See this ( https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/ ).
+
+A sample Deployment file used for this engage can be located 
