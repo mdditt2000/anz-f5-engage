@@ -18,7 +18,7 @@ There are a few components need to be configured to support this integration, ea
 
 **Step 1:**
 
-### Create the Proxy iRule on Bigip
+### Create the Proxy Protocol iRule on Bigip
 
 Proxy Protocol is required by NGINX to provide the applications PODs with the original client IPs. Use the following steps to configure the Proxy_Protocol_iRule
 
@@ -48,16 +48,15 @@ Create a Cluster Role and Cluster Role Binding on the Kubernetes Cluster as foll
     
 Create IngressLink Custom Resource definition as follows:
 
-    kubectl create -f ingresslink-customresourcedefinition.yaml
+    kubectl create -f customresourcedefinition.yaml
 
 cis-crd-schema [repo](https://github.com/mdditt2000/kubernetes-1-19/blob/master/cis%202.3/ingresslink/cis/ingresslink/cis-crd-schema/ingresslink-customresourcedefinition.yaml)
 
 Update the bigip address, partition and other details(image, imagePullSecrets, etc) in CIS deployment file and Install CIS Controller in ClusterIP mode as follows:
 
-* Add the following statements to the CIS deployment arguments for Ingresslink
+* Add the following statements to the CIS deployment arguments
 
     - "--custom-resource-mode=true"
-    - "--ingress-link-mode=true"
 
 * To deploy the CIS controller in cluster mode update CIS deploymemt arguments as follows for kubernetes.
 
