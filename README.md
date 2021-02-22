@@ -218,7 +218,7 @@ cis-deployment [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-
 
 Create a GSLB Servers
 
-    - `big-ip-60-cluster
+    big-ip-60-cluster
 
 Enable Virtual Server Discovery on BIG-IP DNS
 Deploy EDNS CRD 
