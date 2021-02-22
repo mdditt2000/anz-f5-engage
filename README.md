@@ -216,3 +216,13 @@ Add the following parameters to both CIS deployment. In this document both LTM a
 
 cis-deployment [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/cis-deployment/f5-cis-deployment.yaml)
 
+* Create a GSLB Servers
+
+    - `big-ip-60-cluster
+
+* Enable Virtual Server Discovery on BIG-IP DNS
+* Deploy EDNS CRD 
+
+    kubectl create -f edns-cafe.yaml
+
+edns crd [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/crd-example/cafe/edns-cafe.yaml)
