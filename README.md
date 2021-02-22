@@ -225,4 +225,4 @@ Deploy EDNS CRD
 
     kubectl create -f edns-cafe.yaml
 
-edns crd [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/crd-example/cafe/edns-cafe.yaml)
+edns crd [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/dns/edns-cafe.yaml)
