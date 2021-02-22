@@ -196,3 +196,23 @@ Get the `cafe-ingress` resource to check its reported address:
     cafe-ingress   cafe.example.com   35.239.225.75   80, 443   115s
 
 As you can see, the Ingress Controller reported the BIG-IP IP address (configured in NginxCisConnector resource) in the ADDRESS field of the Ingress status.
+
+**Step 7**
+
+### Configure ExternalDNS
+
+ExternalDNS CRD's allows user to control DNS records dynamically via Kubernetes resources in a DNS provider-agnostic way. This will allow you to dynamically load balance multiple sites or kubernetes clusters
+
+#### Setup Options
+
+CIS provides the following options for using CIS
+
+Add the following parameters to both CIS deployment. In this document both LTM and GTM are installed on the same device
+
+* --custom-resource-mode=true - Configure CIS to only monitor CRDs. CIS will ignore all other resources
+* --gtm-bigip-username - Provide username for CIS to access GTM
+* --gtm-bigip-password - Provide password for CIS to access GTM
+* --gtm-bigip-url - Provide url for CIS to access GTM. CIS uses the python SDK to configure GTM 
+
+cis-deployment [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/cis-deployment/f5-cis-deployment.yaml)
+
