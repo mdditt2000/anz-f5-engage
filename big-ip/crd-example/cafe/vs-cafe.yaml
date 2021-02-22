@@ -11,12 +11,6 @@ spec:
   virtualServerHTTPPort: 80
   snat: auto
   pools:
-  - monitor:
-      interval: 20
-      recv: ""
-      send: /
-      timeout: 10
-      type: http
     path: /
     service: nginx-ingress
     servicePort: 80
