@@ -148,4 +148,3 @@ Deploy the Ingress CRD resource with the iRule which is created in Step-1. This 
 
 Note: The name of the app label selector in nginx-ingress resource should match the labels of the nginx-ingress service created in step-3.
 
-
