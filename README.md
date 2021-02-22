@@ -50,7 +50,7 @@ Create IngressLink Custom Resource definition as follows:
 
     kubectl create -f customresourcedefinition.yaml
 
-cis-crd-schema [repo](https://github.com/mdditt2000/kubernetes-1-19/blob/master/cis%202.3/ingresslink/cis/ingresslink/cis-crd-schema/ingresslink-customresourcedefinition.yaml)
+cis-crd-schema [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/crd-example/schema/customresourcedefinitions.yml)
 
 Update the bigip address, partition and other details(image, imagePullSecrets, etc) in CIS deployment file and Install CIS Controller in ClusterIP mode as follows:
 
