@@ -140,7 +140,9 @@ Now to test the integration let's deploy a sample ingress.
 
     kubectl apply -f ingress-example
 
-**Step 5** Create an Ingress CRD Resource
+**Step 5** 
+
+Create an Ingress CRD Resource
 
 Deploy the Ingress CRD resource with the iRule which is created in Step-1. This ip-address will be used to configure the BIG-IP device to load balance among the Ingress Controller pods.
 
