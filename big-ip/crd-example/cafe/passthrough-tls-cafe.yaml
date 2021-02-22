@@ -4,6 +4,7 @@ metadata:
   labels: 
     f5cr: "true"
   name: passthrough-tls-cafe
+  namespace: nginx-ingress
 spec: 
   hosts: 
     - cafe.example.com
