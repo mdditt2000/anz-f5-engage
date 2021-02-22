@@ -11,6 +11,8 @@ spec:
   virtualServerHTTPSPort: 443
   tlsProfileName: passthrough-tls-cafe
   snat: auto
+  iRules:
+    - /Common/Proxy_Protocol_iRule
   pools:
   - path: /
     service: nginx-ingress

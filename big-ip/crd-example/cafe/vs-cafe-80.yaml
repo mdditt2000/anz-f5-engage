@@ -10,6 +10,8 @@ spec:
   virtualServerAddress: "10.192.75.111"
   virtualServerHTTPPort: 80
   snat: auto
+  iRules:
+    - /Common/Proxy_Protocol_iRule
   pools:
   - path: /
     service: nginx-ingress
