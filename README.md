@@ -124,6 +124,8 @@ Create a service for the Ingress Controller pods for ports 80 and 443 as follows
 
     kubectl apply -f nginx-config/nginx-service.yaml
 
+nginx-config [repo](https://github.com/mdditt2000/anz-f5-engage/tree/main/nginx-config)
+
 Verify NGINX-Ingress deployment
 
 ```
@@ -132,21 +134,68 @@ NAME                             READY   STATUS    RESTARTS   AGE
 nginx-ingress-744d95cb86-xk2vx   1/1     Running   0          16s
 ```
 
-**Step 4**
+**Step 4** 
 
-Create an Demo App
+### Create an Ingress CRD Resource on BIG-IP for NGINX IC
 
-Now to test the integration let's deploy a sample ingress.
+Create a passthrough CRD and add the Ingress CRD with the Proxy Protocol iRule which is created in Step 1. This virtual server IP will be used to configure the BIG-IP device to load balance among the Ingress Controller pods.
 
-    kubectl apply -f ingress-example
-
-**Step 5** 
-
-Create an Ingress CRD Resource
-
-Deploy the Ingress CRD resource with the iRule which is created in Step-1. This ip-address will be used to configure the BIG-IP device to load balance among the Ingress Controller pods.
-
-    kubectl apply -f vs-cafe.yaml
+    kubectl create -f passthrough-tls-cafe.yaml
+    kubectl create -f vs-cafe.yaml
 
 Note: The name of the app label selector in nginx-ingress resource should match the labels of the nginx-ingress service created in step-3.
 
+crd-example [repo](https://github.com/mdditt2000/anz-f5-engage/tree/main/big-ip/crd-example/cafe)
+
+**Step 5**
+
+### Deploy the Cafe Application
+
+Create the coffee and the tea deployments and services:
+
+    kubectl create -f cafe.yaml
+
+
+### Configure Load Balancing for the Cafe Application
+
+1. Create a secret with an SSL certificate and a key:
+
+    kubectl create -f cafe-secret.yaml
+
+
+2. Create an Ingress resource:
+
+    kubectl create -f cafe-ingress.yaml
+
+Demo Application [repo](https://github.com/mdditt2000/anz-f5-engage/tree/main/ingress-example)
+
+**Step 6**
+
+## 4. Test the Application
+
+1. To access the application, curl the coffee and the tea services. We'll use ```curl```'s --insecure option to turn off certificate verification of our self-signed
+certificate and the --resolve option to set the Host header of a request with ```cafe.example.com```
+    
+    To get coffee:
+    ```
+    $ curl --resolve cafe.example.com:$IC_HTTPS_PORT:$IC_IP https://cafe.example.com:$IC_HTTPS_PORT/coffee --insecure
+    Server address: 10.12.0.18:80
+    Server name: coffee-7586895968-r26zn
+    ...
+    ```
+    If your prefer tea:
+    ```
+    $ curl --resolve cafe.example.com:$IC_HTTPS_PORT:$IC_IP https://cafe.example.com:$IC_HTTPS_PORT/tea --insecure
+    Server address: 10.12.0.19:80
+    Server name: tea-7cd44fcb4d-xfw2x
+    ...
+    ```
+
+1. Get the `cafe-ingress` resource to check its reported address:
+    ```
+    $ kubectl get ing cafe-ingress
+    NAME           HOSTS              ADDRESS         PORTS     AGE
+    cafe-ingress   cafe.example.com   35.239.225.75   80, 443   115s
+    ```
+
+    As you can see, the Ingress Controller reported the BIG-IP IP address (configured in NginxCisConnector resource) in the ADDRESS field of the Ingress status.
