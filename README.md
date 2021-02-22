@@ -50,7 +50,7 @@ Create IngressLink Custom Resource definition as follows:
 
     kubectl create -f customresourcedefinition.yaml
 
-cis-crd-schema [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/crd-example/schema/customresourcedefinitions.yml)
+cis-crd-schema [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/crd-example/schema/customresourcedefinitions.yaml)
 
 Update the bigip address, partition and other details(image, imagePullSecrets, etc) in CIS deployment file and Install CIS Controller in ClusterIP mode as follows:
 
@@ -58,7 +58,7 @@ Update the bigip address, partition and other details(image, imagePullSecrets, e
 
     - "--custom-resource-mode=true"
 
-* To deploy the CIS controller in cluster mode update CIS deploymemt arguments as follows for kubernetes.
+* To deploy the CIS controller in cluster mode update CIS deployment arguments as follows for kubernetes.
 
     - "--pool-member-type=cluster"
     - "--flannel-name=fl-vxlan"
@@ -72,13 +72,13 @@ Additionally, if you are deploying the CIS in Cluster Mode you need to have foll
 kubectl create -f f5-cis-deployment.yaml
 ```
 
-cis-deployment [repo](https://github.com/mdditt2000/kubernetes-1-19/blob/master/cis%202.3/ingresslink/cis/ingresslink/cis-deployment/f5-cis-deployment.yaml)
+cis-deployment [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/cis-deployment/f5-cis-deployment.yaml)
 
 Configure BIG-IP as a node in the Kubernetes cluster. This is required for OVN Kubernetes using ClusterIP
 
     kubectl create -f f5-bigip-node.yaml
 
-bigip-node [repo](https://github.com/mdditt2000/kubernetes-1-19/blob/master/cis%202.3/ingresslink/cis/ingresslink/cis-deployment/f5-bigip-node.yaml)
+bigip-node [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/big-ip/cis-deployment/f5-bigip-node.yaml)
 
 Verify CIS deployment
 
@@ -131,3 +131,21 @@ Verify NGINX-Ingress deployment
 NAME                             READY   STATUS    RESTARTS   AGE
 nginx-ingress-744d95cb86-xk2vx   1/1     Running   0          16s
 ```
+
+**Step 4**
+
+Create an Demo App
+
+Now to test the integration let's deploy a sample ingress.
+
+    kubectl apply -f ingress-example
+
+**Step 5** Create an Ingress CRD Resource
+
+Deploy the Ingress CRD resource with the iRule which is created in Step-1. This ip-address will be used to configure the BIG-IP device to load balance among the Ingress Controller pods.
+
+    kubectl apply -f vs-cafe.yaml
+
+Note: The name of the app label selector in nginx-ingress resource should match the labels of the nginx-ingress service created in step-3.
+
+
