@@ -14,12 +14,18 @@ spec:
   - path: /coffee
     service: nginx-ingress
     servicePort: 80
+    monitor:
+      type: http
+      send: 'GET /coffee HTTP/1.1\r\nHost: cafe.example.com\r\nConnection: Close\r\n\r\n'
+      recv: ""
+      interval: 20
+      timeout: 10
   - path: /tea
     service: nginx-ingress
     servicePort: 80
     monitor:
-      interval: 10
-      recv: ""
-      send: 'GET /tea HTTP/1.1\r\nHost: cafe.example.com\r\nConnection: Close\r\n\r\n'
-      timeout: 10
       type: http
+      send: 'GET /tea HTTP/1.1\r\nHost: cafe.example.com\r\nConnection: Close\r\n\r\n'
+      recv: ""
+      interval: 20
+      timeout: 10
