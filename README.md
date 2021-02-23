@@ -226,3 +226,5 @@ Deploy EDNS CRD
     kubectl create -f edns-cafe.yaml
 
 edns crd [repo](https://github.com/mdditt2000/anz-f5-engage/blob/main/dns/edns-cafe.yaml)
+
+**Limitation** Since i am using Proxy Protocol my dns monitoring is failing. I am looking into this
