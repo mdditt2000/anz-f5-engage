@@ -16,7 +16,7 @@ spec:
     dataServerName: /Common/big-ip-60-cluster
     monitor:
       type: https
-      send: "GET / HTTP/1.1\r\nHost: cafe.example.com\r\nConnection: Close\r\n\r\n"
+      send: "GET /coffee HTTP/1.1\r\nHost: cafe.example.com\r\nConnection: Close\r\n\r\n"
       recv: ""
       interval: 10
       timeout: 30
